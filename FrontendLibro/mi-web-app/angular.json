@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "mi-web-app"
+  "defaultProject": "mi-web-app",
+  "cli": {
+    "analytics": "bd5cf758-e663-447d-99a2-290dc1222430"
+  }
 }
