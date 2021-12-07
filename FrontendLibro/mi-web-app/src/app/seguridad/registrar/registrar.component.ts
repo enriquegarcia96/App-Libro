@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { SeguridadService } from '../seguridad.service';
 
 @Component({
   selector: 'app-registrar',
@@ -9,14 +10,22 @@ import { NgForm } from '@angular/forms';
 
 export class RegistrarComponent implements OnInit {
 
-  constructor() { }
+  constructor( private seguridadService: SeguridadService ) { }
 
   ngOnInit(): void {
   }
 
   // tslint:disable-next-line: typedef
   registrarUsuario(form: NgForm){
-    console.log(form);
+    this.seguridadService.registrarUsuario({
+      email: form.value.email,
+      password: form.value.password,
+      apellidos: form.value.apellidos,
+      nombre: form.value.nombre,
+      username: form.value.username,
+      usuarioId: ''
+
+    });
   }
 
 }
