@@ -16,6 +16,10 @@ import { LoginComponent } from './seguridad/login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BarraComponent } from './navegacion/barra/barra.component';
 import { MenuListaComponent } from './navegacion/menu-lista/menu-lista.component';
+import { SeguridadService } from './seguridad/seguridad.service';
+import { BooksComponent } from './books/books.component';
+import { BooksService } from './books/books.service';
+
 
 
 @NgModule({
@@ -29,6 +33,7 @@ import { MenuListaComponent } from './navegacion/menu-lista/menu-lista.component
     LoginComponent,
     BarraComponent,
     MenuListaComponent,
+    BooksComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,7 @@ import { MenuListaComponent } from './navegacion/menu-lista/menu-lista.component
     MaterialModule,
     FlexLayoutModule
   ],
-  providers: [LibrosService],
+  providers: [LibrosService, SeguridadService, BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
