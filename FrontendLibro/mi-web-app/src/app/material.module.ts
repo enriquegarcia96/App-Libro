@@ -7,6 +7,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -17,7 +24,14 @@ import {MatCardModule} from '@angular/material/card';
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatButtonModule,
@@ -27,7 +41,14 @@ import {MatCardModule} from '@angular/material/card';
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
 })
 export class MaterialModule {}
