@@ -47,10 +47,10 @@ export class SeguridadService{
   }
 
   obtenerUsuario(){
-    return {...this.usuario}//devuelve el usuario mas actualizado
+    return {...this.usuario} // devuelve el usuario mas actualizado
   }
 
-  onSesion(){
+  onSesion(): boolean{
     return this.usuario != null;
   }
 
