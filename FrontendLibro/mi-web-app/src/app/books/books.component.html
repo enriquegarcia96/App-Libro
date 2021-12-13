@@ -1,10 +1,10 @@
 <div fxLayoutAlign="center center" >
   <mat-form-field fxFlex="60%" >
-    <input matInput type="text" (keyup)="hacerFiltro($event.target.value)" placeholder="Ingrese texto">
+    <input matInput type="text" (keyup)="hacerFiltro($event)" placeholder="Ingrese texto">
   </mat-form-field>
 </div>
 
-<mat-table [dataSource]="dataSource" matSort >
+<mat-table [dataSource]="dataSource" matSort (matSortChange)="ordenarColumna($event)" >
 
   <ng-container matColumnDef="titulo">
     <mat-header-cell *matHeaderCellDef mat-sort-header >Titulo</mat-header-cell>
@@ -18,7 +18,7 @@
 
   <ng-container matColumnDef="autor">
     <mat-header-cell *matHeaderCellDef mat-sort-header >Autor</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.autor}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{element.autor.nombreCompleto}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="precio">
@@ -33,7 +33,7 @@
 </mat-table>
 
 
-<mat-paginator [pageSize]="5" [pageSizeOptions]="[1,5,10,20]" ></mat-paginator>
+<mat-paginator (page)="eventoPaginador($event)" #paginacion [pageSize]="librosPorPagina" [pageSizeOptions]="paginaCombo" [length]="totalLibros"></mat-paginator>
 
 <button mat-fab id="boton-agregar" color="warn" (click)="abrirDialog()" >
   <mat-icon>add</mat-icon>

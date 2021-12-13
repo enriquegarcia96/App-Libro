@@ -22,8 +22,7 @@ import { BooksService } from './books/books.service';
 import { BookNuevoComponent } from './books/book-nuevo.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { AutoresComponent } from './autores/autores.component';
-import { AutoresService } from './autores/autores.service';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,9 +45,10 @@ import { AutoresService } from './autores/autores.service';
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
-  providers: [LibrosService, SeguridadService, BooksService, { provide: MAT_DATE_LOCALE, useValue: 'es'}],
+  providers: [LibrosService, SeguridadService, { provide: MAT_DATE_LOCALE, useValue: 'es'}],
   bootstrap: [AppComponent],
   entryComponents: [BookNuevoComponent]
 })
