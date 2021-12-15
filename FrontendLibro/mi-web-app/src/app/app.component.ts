@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SeguridadService } from './seguridad/seguridad.service';
 
 @Component({
   selector: 'app-root',
@@ -6,8 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   abrirMenu = false;
+  constructor( private seguridadService: SeguridadService ){}
+
+  // pregunta si existe un token en el localstorage
+  ngOnInit(): void {
+      this.seguridadService.cargarUsuario();
+  }
 
 }

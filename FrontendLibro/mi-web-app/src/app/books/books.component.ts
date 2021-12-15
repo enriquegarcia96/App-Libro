@@ -114,12 +114,13 @@ export class BooksComponent implements OnInit, AfterViewInit, OnDestroy {
       this.sortDirection,
       this.filterValue
     );
-    this.booksService
+
+    this.bookSubcription = this.booksService
       .obtenerActualListener()
       .subscribe((pagination: PaginationBooks) => {
         this.dataSource = new MatTableDataSource<Books>(pagination.data);
         this.totalLibros = pagination.totalRows;
-      });
+    });
   }
 
   ngOnDestroy(): void {
