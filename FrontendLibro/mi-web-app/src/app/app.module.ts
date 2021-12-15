@@ -16,13 +16,12 @@ import { LoginComponent } from './seguridad/login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BarraComponent } from './navegacion/barra/barra.component';
 import { MenuListaComponent } from './navegacion/menu-lista/menu-lista.component';
-import { SeguridadService } from './seguridad/seguridad.service';
 import { BooksComponent } from './books/books.component';
-import { BooksService } from './books/books.service';
 import { BookNuevoComponent } from './books/book-nuevo.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { AutoresComponent } from './autores/autores.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SeguridadInterceptor } from './seguridad/seguridad-interceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     MenuListaComponent,
     BooksComponent,
     BookNuevoComponent,
-    AutoresComponent
+    AutoresComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,10 +45,14 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [LibrosService, SeguridadService, { provide: MAT_DATE_LOCALE, useValue: 'es'}],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: SeguridadInterceptor, multi: true },
+    LibrosService,
+    { provide: MAT_DATE_LOCALE, useValue: 'es' },
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [BookNuevoComponent]
+  entryComponents: [BookNuevoComponent],
 })
-export class AppModule { }
+export class AppModule {}

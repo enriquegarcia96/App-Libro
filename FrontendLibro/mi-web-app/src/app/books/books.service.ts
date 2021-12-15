@@ -41,7 +41,7 @@ export class BooksService {
       filterValue
     };
 
-    this.http.post<PaginationBooks>(this.baseUrl + 'api/Libro/Pagination', request)
+    this.http.post<PaginationBooks>(this.baseUrl + 'Libro/Pagination', request)
     .subscribe((response) => {
 
       this.bookPagination = response;
@@ -56,7 +56,7 @@ export class BooksService {
 
   guardarLibro(book: Books) {
     // this.booksLista.push(book);
-    this.http.post(this.baseUrl + 'api/Libro', book)
+    this.http.post(this.baseUrl + 'Libro', book)
       .subscribe((response) => {
         this.bookSubject.next(); // para actualizar la lista y devuelve el libro actualizado
       });
