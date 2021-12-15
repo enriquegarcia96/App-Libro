@@ -70,8 +70,9 @@ exports.login = async (req, res, next) => {
 exports.getUsuario = async (req, res, next) => {
   try {
     const usuarioToken = req.usuario;
-
     
+    
+
     const token = await usuarioToken.crearJsonWebToken();
 
     // const token = await jwt.sign({usuarioToken}, process.env.JWT_SECRET_WORD,{

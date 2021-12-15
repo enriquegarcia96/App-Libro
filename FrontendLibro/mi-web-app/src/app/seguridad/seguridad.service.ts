@@ -50,7 +50,7 @@ export class SeguridadService {
 
   registrarUsuario(usr: Usuario): void {
     this.http
-      .post<Usuario>(this.baseUrl + 'usuario/registrar', usr)
+      .post<Usuario>(this.baseUrl + 'usuarioLogin/registrar', usr)
       .subscribe((response) => {
         // console.log('login respuesta', response);
 
@@ -83,7 +83,7 @@ export class SeguridadService {
 
   login(loginData: loginData): void {
     this.http
-      .post<Usuario>(this.baseUrl + 'usuario/login', loginData)
+      .post<Usuario>(this.baseUrl + 'usuarioLogin/login', loginData)
       .subscribe((response) => {
         // console.log('login respuesta', response);
 

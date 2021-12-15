@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "development") {
 
 //.- api de Rutas .-//
 app.use('/api/LibreriaAutor', autor);
-app.use("/api/Libro", libro);
+app.use("/api/LibroGet", libro);
 app.use("/usuarioLogin", usuario);
 
 app.use(errorHandler);
