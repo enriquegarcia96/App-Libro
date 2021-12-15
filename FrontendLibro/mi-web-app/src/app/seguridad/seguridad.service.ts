@@ -26,7 +26,7 @@ export class SeguridadService {
     this.token = tokenBrowser;
     this.seguridadCambio.next(true);
 
-    this.http.get<Usuario>(this.baseUrl + 'usuario').subscribe((response) => {
+    this.http.get<Usuario>(this.baseUrl + 'usuarioLogin').subscribe((response) => {
       // console.log('login respuesta', response);
 
       this.token = response.token;
