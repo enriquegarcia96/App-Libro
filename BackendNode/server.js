@@ -12,6 +12,7 @@ connectDatabase();
 //.- importaciones de las rutas .-//
 const libro = require("./rutas/libro");
 const autor = require('./rutas/autor');
+const usuario = require('./rutas/usuario');
 
 const app = express();
 app.use(express.json());
@@ -26,6 +27,7 @@ if (process.env.NODE_ENV === "development") {
 //.- api de Rutas .-//
 app.use('/api/LibreriaAutor', autor);
 app.use("/api/Libro", libro);
+app.use("/usuarioLogin", usuario);
 
 app.use(errorHandler);
 
