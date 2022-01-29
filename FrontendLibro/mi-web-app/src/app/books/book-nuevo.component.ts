@@ -14,15 +14,15 @@ import { Subscription } from 'rxjs';
   templateUrl: './bookNuevo.component.html',
 })
 export class BookNuevoComponent implements OnInit, OnDestroy {
-  selectAutor: string;
-  selectAutorTexto: string;
-  fechaPublicacion: string;
+  selectAutor!: string;
+  selectAutorTexto!: string;
+  fechaPublicacion!: string;
 
-  @ViewChild(MatDatepicker) picker: MatDatepicker<Date>;
+  @ViewChild(MatDatepicker) picker!: MatDatepicker<Date>;
 
   autores: Autor[] = []; // para el combo box
-  autorSubcription: Subscription;
 
+  autorSubcription: Subscription = new Subscription();
 
   constructor(
     private bookService: BooksService,
@@ -31,10 +31,11 @@ export class BookNuevoComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    //this.autores = this.autoresService.obtenerAutores();
+    // this.autores = this.autoresService.obtenerAutores();
 
     // para que lleve el combo box
-    this.autorSubcription =  this.autoresService.obtenerAutores();
+    this.autoresService.obtenerAutores();
+
     this.autoresService
       .obtenerActualListener()
       .subscribe((autoresBackend: Autor[]) => {
@@ -46,35 +47,36 @@ export class BookNuevoComponent implements OnInit, OnDestroy {
     this.autorSubcription.unsubscribe();
   }
 
+  // tslint:disable-next-line: typedef
   selected(event: MatSelectChange) {
     // capturo el label del texto del combo box
     this.selectAutorTexto = (event.source.selected as MatOption).viewValue;
   }
 
+  // tslint:disable-next-line: typedef
   guardarLibro(form: NgForm) {
     if (form.valid) {
-
       const autorRequest = {
         id: this.selectAutor,
-        nombreCompleto: this.selectAutorTexto
+        nombreCompleto: this.selectAutorTexto,
       };
 
       const libroRequest = {
-        id: null,
+        id: '',
         descripcion: form.value.descripcion,
         titulo: form.value.titulo,
         autor: autorRequest,
-        precio: parseInt( form.value.precio ),
-        fechaPublicacion: new Date(this.fechaPublicacion)
+        // tslint:disable-next-line: radix
+        precio: parseInt(form.value.precio),
+        fechaPublicacion: new Date(this.fechaPublicacion),
       };
 
       this.bookService.guardarLibro(libroRequest);
-      this.autorSubcription = this.bookService.guardarLibroListener()
-      .subscribe( () => {
-        this.dialogRef.closeAll(); // se ciera el dashbor y se actualiza
-      } );
+      this.autorSubcription = this.bookService
+        .guardarLibroListener()
+        .subscribe(() => {
+          this.dialogRef.closeAll(); // se ciera el dashbor y se actualiza
+        });
     }
   }
-
-
 }
