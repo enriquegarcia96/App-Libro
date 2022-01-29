@@ -5,21 +5,26 @@ import {
   RouterStateSnapshot,
   Router,
 } from '@angular/router';
+import { Observable } from 'rxjs';
 import { SeguridadService } from './seguridad.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class SeguridadRouter implements CanActivate {
   constructor(
     private seguridadService: SeguridadService,
     private router: Router
   ) {}
 
-  // tslint:disable-next-line: typedef
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
     if (this.seguridadService.onSesion()) {
       return true;
     } else {
-      this.router.navigate(['/login']);
+      return this.router.navigate(['/login']);
     }
   }
 }
